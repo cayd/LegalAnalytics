@@ -7,6 +7,8 @@ def main():
         labels = json.load(json_file)
     print("loading complete")
 
+    labels['examples'].reverse()
+    
     for i in labels['examples']:
         pprint.pprint(i['id'])
         try:
@@ -39,7 +41,9 @@ def main():
         i['labeled']=True
         
         with open('full_labels.json', 'w') as labels_file:
+            labels['examples'].reverse()
             json.dump(labels, labels_file, indent=4)
-    
+            labels['examples'].reverse()
+            
 if __name__ == "__main__":
     main()
